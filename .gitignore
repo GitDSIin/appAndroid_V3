@@ -1,0 +1,15 @@
+# Archivos de Android Studio
+.gradle/
+.idea/
+build/
+app/build/
+local.properties
+
+# Archivos generados
+*.apk
+*.aab
+*.iml
+
+# Configuración del sistema
+.DS_Store
+*.log
