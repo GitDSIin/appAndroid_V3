@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:orientation="vertical"
+
+    >
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardNegocio"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        app:cardBackgroundColor="#A9A9A9"
+        android:layout_margin="10dp"
+        android:layout_marginTop="50dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        tools:ignore="UnknownIdInLayout">
+        <ProgressBar
+            android:id="@+id/progressCardViewEquipos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            tools:ignore="MissingConstraints" />
+
+        <LinearLayout
+            android:id="@+id/lyTituloEquipoList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/btnExecuteNegocioApp"
+
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="fitXY" />
+
+
+            <TextView
+                android:id="@+id/NegocioNombreContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5dp"
+                android:layout_marginRight="50dp"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:text="SERAPP3"
+                android:textSize="13dp"
+                android:fontFamily="@font/helvetica"
+                android:textAppearance="?attr/textAppearanceListItem" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lyip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36dp"
+            android:orientation="horizontal" >
+
+
+
+
+            <TextView
+                android:id="@+id/iplocal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:paddingTop="40dp"
+                android:text="192.168.2.52"
+                android:textSize="13dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/helvetica"
+                android:textAppearance="?attr/textAppearanceListItemSecondary" />
+
+
+
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+
+            >
+
+
+
+
+
+            <ImageView
+                android:id="@+id/btnWakeOn2"
+                android:src="@drawable/enciendeequipory"
+                android:visibility="gone"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="60dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/lyip">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/fecUtlAct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/black"
+                    android:textStyle="italic"
+                    android:textSize="13dp"
+                    android:fontFamily="@font/helvetica"
+                    android:textAppearance="?attr/textAppearanceListItemSecondary"
+                    />
+                <TextView
+                    android:id="@+id/horaUtlAct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/black"
+                    android:textStyle="italic"
+                    android:textSize="13dp"
+                    android:fontFamily="@font/helvetica"
+                    android:textAppearance="?attr/textAppearanceListItemSecondary"
+                    />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+
+
+        <LinearLayout
+            android:id="@+id/linearNegAccionesDescList"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="0dp"
+            android:gravity="right|bottom"
+            android:orientation="horizontal"/>
+
+        <LinearLayout
+            android:id="@+id/linearNegAccionesList"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="0dp"
+            android:gravity="right|bottom"
+            android:orientation="horizontal"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <RelativeLayout
+            android:id="@+id/relativeLeftButtonsEquipo"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+
+            >
+
+            <ImageView
+                android:id="@+id/btnQA"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:visibility="visible"
+                android:layout_marginTop="10dp"
+
+                />
+            <ImageView
+                android:id="@+id/btnUnimovil"
+                android:src="@drawable/iconounimovil64"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                android:layout_below="@+id/btnQA"
+                />
+            <ImageView
+                android:id="@+id/btnArqWsIcon"
+                android:src="@drawable/ws_icono_"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                android:layout_below="@+id/btnUnimovil"
+                />
+
+            <ImageView
+                android:id="@+id/btnArqApiIcon"
+                android:src="@drawable/api_icono_eq"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="8dp"
+                android:visibility="gone"
+                android:layout_below="@+id/btnUnimovil"
+                />
+
+
+            <ImageView
+                android:id="@+id/btnNubeEquipo"
+                android:src="@drawable/cloudiconox64v3"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+
+                />
+
+            <ImageView
+                android:id="@+id/btnFisicoEquipo"
+                android:src="@drawable/svr_fisico"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+
+                />
+
+
+            <ImageView
+                android:id="@+id/btnAyuda"
+                android:src="@drawable/ayudaconfiguracion"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:elevation="50dp"
+                android:paddingTop="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                app:layout_constraintHorizontal_bias="0.98"
+                />
+
+        </RelativeLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout >

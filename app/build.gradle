@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.gms.google-services'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -9,10 +11,10 @@ android {
 
     defaultConfig {
         applicationId "com.apptomatico.app_movil_kotlin_v3"
-        minSdk 21
+        minSdk 23
         targetSdk 34
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0.272"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -35,10 +37,18 @@ android {
         produccion {
             applicationId "com.apptomatico.app_movil_kotlin_v3"
             versionNameSuffix "-prod"
+            buildConfigField "String", "DOMINIO_PORTAL", "\"webapptomatico.dsiin.com\""
+            buildConfigField "String", "TOKEN_MAESTRO", "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Implc2NhbWlsbGFAZHNpaW4uY29tIiwiZXhwIjoxNjc5MDg4Mjc2LCJlbWFpbCI6Implc2NhbWlsbGFAZHNpaW4uY29tIiwib3JpZ19pYXQiOjE2NzkwODEwNzZ9.s-hvTxqpjfRIRkydS9NASkTecKNCgMzhYvHbNep-GD0\""
+            buildConfigField "String", "VERSION_NAME", "\"1.0.0.272\""
+            buildConfigField "int", "ENTORNO_ACT_APP", "1"
         }
         desarrollo {
             applicationId "com.apptomatico.app_movil_kotlin_v3.dev"
             versionNameSuffix "-dev"
+            buildConfigField "String", "DOMINIO_PORTAL", "\"weblicencias.dsiin.com\""
+            buildConfigField "String", "TOKEN_MAESTRO", "\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Implc2NhbWlsbGFAZHNpaW4uY29tIiwiZXhwIjoxNjc5MDg4Mjc2LCJlbWFpbCI6Implc2NhbWlsbGFAZHNpaW4uY29tIiwib3JpZ19pYXQiOjE2NzkwODEwNzZ9.s-hvTxqpjfRIRkydS9NASkTecKNCgMzhYvHbNep-GD0\""
+            buildConfigField "String", "VERSION_NAME", "\"1.0.0.271\""
+            buildConfigField "int", "ENTORNO_ACT_APP", "0"
         }
     }
 
@@ -51,8 +61,18 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
+    }
+
+    packagingOptions {
+        resources {
+            // Ignora archivos duplicados
+            excludes += ["META-INF/NOTICE.md", "META-INF/LICENSE.md"]
+        }
     }
 }
+
+def nav_version = "2.7.7"
 
 dependencies {
     implementation 'androidx.core:core-ktx:1.13.1'
@@ -66,4 +86,92 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
+
+    implementation 'androidx.sqlite:sqlite:2.3.1'
+    implementation 'androidx.sqlite:sqlite-framework:2.3.1'
+    implementation 'net.zetetic:android-database-sqlcipher:4.5.4@aar'
+
+    implementation("androidx.biometric:biometric:1.1.0")
+
+    implementation 'com.google.dagger:dagger:2.48.1'
+
+    kapt 'com.google.dagger:dagger-compiler:2.48.1'
+
+    implementation "com.squareup.retrofit2:retrofit:2.8.1"
+    implementation "com.squareup.retrofit2:converter-gson:2.8.1"
+    implementation 'com.squareup.retrofit2:converter-scalars:2.8.1'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.8.1"
+
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.2"
+
+    implementation 'com.tinder.scarlet:scarlet:0.1.12'
+    implementation 'com.tinder.scarlet:lifecycle-android:0.1.12'
+    implementation 'com.tinder.scarlet:websocket-okhttp:0.1.12'
+    implementation 'com.tinder.scarlet:stream-adapter-rxjava2:0.1.12'
+
+    implementation 'org.imaginativeworld.oopsnointernet:oopsnointernet:2.0.0'
+
+
+// RxAndroid
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1' // última versión estable
+
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    implementation("androidx.work:work-runtime-ktx:2.8.0")
+
+    implementation 'commons-net:commons-net:3.9.0'
+
+
+    implementation 'com.github.rommansabbir:AnimationX:2.0'
+
+
+// Only KTX versions where available
+    implementation platform("com.google.firebase:firebase-bom:34.1.0")
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.2.0'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.3.0'
+    implementation 'com.google.firebase:firebase-messaging-directboot'
+    implementation 'com.google.firebase:firebase-perf-ktx:20.3.3'
+
+
+    implementation 'com.tomergoldst.android:tooltips:1.1.1'
+    implementation 'com.github.douglasjunior:android-simple-tooltip:1.1.0'
+
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+
+    implementation 'com.github.michaelmuenzer:ScrollableNumberPicker:0.2.2'
+
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    implementation 'com.sun.mail:android-mail:1.6.7'
+
+    implementation 'com.sun.mail:android-activation:1.6.7'
+
+    implementation 'com.otaliastudios:zoomlayout:1.9.0'
+
+
+
+
+
+// Lifecycle (solo lo que uses)
+    implementation "androidx.fragment:fragment-ktx:1.8.3" // para by viewModels()
+    implementation "androidx.activity:activity-ktx:1.9.2" // para by viewModels() en Activity
+
+
+
+}
+
+// Aquí fuera de android y dependencies
+configurations.configureEach {
+    resolutionStrategy {
+        force "com.google.firebase:firebase-bom:34.1.0"
+    }
 }

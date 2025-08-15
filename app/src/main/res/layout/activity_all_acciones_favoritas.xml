@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_negocios"
+    >
+
+
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:id="@+id/tool_bar_interno"
+        android:background="@color/colorSecundario"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/pageheadertop"
+        tools:ignore="UnknownIdInLayout">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4"
+            android:orientation="vertical">
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:weightSum="3"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    tools:ignore="MissingConstraints">
+                    <LinearLayout
+                        android:id="@+id/ly_visor_menu_compartir"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="20dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:orientation="vertical"
+                        tools:ignore="MissingConstraints">
+
+                        <ImageView
+                            android:id="@+id/btnModalAllAccionesFavoritasReturn"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:gravity="center_vertical"
+                            android:background="@drawable/flechahaciaatrasv224"
+
+                            />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/lbl_nom_archivo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:lines="2"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/helvetica"
+                        android:textAlignment="center"
+                        android:text="Equipos:"
+                        android:textColor="@color/colorTitulos"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        tools:ignore="MissingConstraints,RtlCompat" />
+
+                    <Spinner
+                        android:id="@+id/inicio_equipos_spinner_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="85dp"
+                        style="@style/Widget.AppCompat.Spinner"
+                        android:background="@drawable/spinner_bg"
+                        android:dropDownWidth="match_parent"
+                        android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+                        android:popupBackground="@android:color/white"
+                        android:popupElevation="3dp"
+                        android:gravity="left"
+                        android:stateListAnimator="@drawable/spinner_sla"
+                        tools:ignore="MissingConstraints" />
+
+                </LinearLayout>
+
+
+
+
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/tool_bar_interno"
+        tools:context=".allaccionesfavoritas.AllAccionesFavoritas" >
+
+
+
+    </FrameLayout>
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <ProgressBar
+            android:id="@+id/progressAllAcciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:visibility="gone"
+            tools:ignore="MissingConstraints" />
+
+
+
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,784 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_negocios">
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:id="@+id/tool_bar_interno"
+        android:background="@color/colorPrimario"
+        android:orientation="horizontal"
+
+
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="4"
+            android:orientation="vertical">
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:weightSum="3"
+                android:orientation="horizontal">
+
+
+
+                <TextView
+                    android:id="@+id/lbl_nom_archivo"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:lines="2"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/helvetica"
+                    android:textAlignment="center"
+                    android:text="Alertas Favoritas"
+                    android:textColor="@color/colorBackground"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:ignore="MissingConstraints,RtlCompat" />
+
+
+                <LinearLayout
+                    android:id="@+id/ly_visor_alertas_fav"
+                    android:layout_width="100dp"
+                    android:layout_height="0dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:orientation="vertical"
+                    tools:ignore="MissingConstraints">
+
+                    <ImageView
+                        android:id="@+id/closebtnAlertas"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/flechahaciaatrasv224"
+
+                        />
+                </LinearLayout>
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollInicio"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tool_bar_interno">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="40dp">
+
+                <TextView
+                    android:id="@+id/lblsubTituloAlertasFav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:lines="2"
+                    android:gravity="left|center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:textAlignment="center"
+                    android:visibility="visible"
+                    android:textSize="16dp"
+                    android:fontFamily="@font/helvetica"
+                    android:text="Alerta"
+                    />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/helvetica"
+                    android:gravity="left|center_vertical"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:text="1.- Encendido de Equipo"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+
+                <Switch
+                    android:id="@+id/swimgFavAltEstSvr"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="100dp"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:text="" />
+
+                <ImageView
+                    android:id="@+id/imgFavAltEstSvr"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="100dp"
+                    android:src="@drawable/estrellafavoritooff"
+                    android:visibility="gone"/>
+
+
+                <com.michaelmuenzer.android.scrollablennumberpicker.ScrollableNumberPicker
+                    android:id="@+id/pkEncenderEquipo"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/background_negocios"
+                    android:fontFamily="@font/helvetica"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textColor="@color/colorTitulos"
+                    android:textSize="20sp"
+                    app:snp_buttonTouchScaleFactor="0.8"
+                    app:snp_maxValue="50"
+                    app:snp_minValue="0"
+                    app:snp_orientation="vertical"
+                    app:snp_stepSize="1"
+                    app:snp_value="5"
+                    android:visibility="gone"
+                    tools:ignore="MissingClass" />
+
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEncenderEquipo"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textSize="20dp"
+                    android:text="5"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/colorSecundario"
+                    android:textAppearance="@style/TextLabel"
+                    android:textColor="@color/colorTitulos"/>
+
+
+
+
+
+
+            </RelativeLayout>
+
+
+
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/txtalt1"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/helvetica"
+                    android:gravity="left|center_vertical"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:text="2.- Apagado de Equipo"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+
+                <Switch
+                    android:id="@+id/swimgFavAltIniSesion"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="100dp"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:text="" />
+
+
+                <ImageView
+                    android:id="@+id/imgFavAltIniSesion"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="100dp"
+                    android:src="@drawable/estrellafavoritooff"
+                    android:visibility="gone"/>
+
+
+
+
+
+                <com.michaelmuenzer.android.scrollablennumberpicker.ScrollableNumberPicker
+                    android:id="@+id/pkInputApagadoEquipo"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/background_negocios"
+                    android:fontFamily="@font/helvetica"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textColor="@color/colorTitulos"
+                    android:textSize="20sp"
+                    app:snp_buttonTouchScaleFactor="0.8"
+                    app:snp_maxValue="50"
+                    app:snp_minValue="0"
+                    app:snp_orientation="vertical"
+                    app:snp_stepSize="1"
+                    app:snp_value="5"
+                    android:visibility="gone"/>
+
+
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputApagadoEquipo"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/colorSecundario"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:text="5"
+                    android:visibility="gone"
+                    android:textAppearance="@style/TextLabel"
+                    android:textColor="@color/colorTitulos"
+                    android:textSize="20dp" />
+
+
+
+
+            </RelativeLayout>
+
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/helvetica"
+                    android:gravity="left|center_vertical"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:text="3.- Inicio de Sesion"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+
+                <Switch
+                    android:id="@+id/swimgFavAltCierreSesion"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="100dp"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:text=""/>
+
+                <ImageView
+                    android:id="@+id/imgFavAltCierreSesion"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="100dp"
+                    android:src="@drawable/estrellafavoritooff"
+                    android:visibility="gone"/>
+
+
+
+
+
+                <com.michaelmuenzer.android.scrollablennumberpicker.ScrollableNumberPicker
+                    android:id="@+id/pkInputInicioSesion"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/background_negocios"
+                    android:fontFamily="@font/helvetica"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textColor="@color/colorTitulos"
+                    android:textSize="20sp"
+                    app:snp_buttonTouchScaleFactor="0.8"
+                    app:snp_maxValue="50"
+                    app:snp_minValue="0"
+                    app:snp_orientation="vertical"
+                    app:snp_stepSize="1"
+                    app:snp_value="5"
+                    android:visibility="gone"/>
+
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputInicioSesion"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textSize="20dp"
+                    android:text="5"
+                    android:layout_alignParentRight="true"
+                    android:visibility="gone"
+                    android:background="@color/colorPrimario"
+                    android:textAppearance="@style/TextLabel"
+                    android:textColor="@color/colorTitulos"/>
+
+
+
+
+            </RelativeLayout>
+
+
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/helvetica"
+                    android:gravity="left|center_vertical"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:text="4.- Cierre de Sesion"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+
+                <Switch
+                    android:id="@+id/swimgFavAltEnvSistema"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="100dp"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:text="" />
+
+                <ImageView
+                    android:id="@+id/imgFavAltEnvSistema"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="100dp"
+                    android:src="@drawable/estrellafavoritooff"
+                    android:visibility="gone"/>
+
+
+
+
+                <com.michaelmuenzer.android.scrollablennumberpicker.ScrollableNumberPicker
+                    android:id="@+id/pkInputCierreSesion"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/background_negocios"
+                    android:fontFamily="@font/helvetica"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textColor="@color/colorTitulos"
+                    android:textSize="20sp"
+                    app:snp_buttonTouchScaleFactor="0.8"
+                    app:snp_maxValue="50"
+                    app:snp_minValue="0"
+                    app:snp_orientation="vertical"
+                    app:snp_stepSize="1"
+                    app:snp_value="5"
+                    android:visibility="gone"/>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputCierreSesion"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textSize="20dp"
+                    android:text="5"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/colorPrimario"
+                    android:textAppearance="@style/TextLabel"
+                    android:textColor="@color/colorTitulos"/>
+
+
+
+
+            </RelativeLayout>
+
+
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/helvetica"
+                    android:gravity="left|center_vertical"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:text="5.- Error del Equipo"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+
+                <Switch
+                    android:id="@+id/swimgFavAltErrorSistema"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="100dp"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:text="" />
+
+
+                <ImageView
+                    android:id="@+id/imgFavAltErrorSistema"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="100dp"
+                    android:src="@drawable/estrellafavoritooff"
+                    android:visibility="gone"/>
+
+
+
+
+                <com.michaelmuenzer.android.scrollablennumberpicker.ScrollableNumberPicker
+                    android:id="@+id/pkInputErrorEquipo"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/background_negocios"
+                    android:fontFamily="@font/helvetica"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textColor="@color/colorTitulos"
+                    android:textSize="20sp"
+                    app:snp_buttonTouchScaleFactor="0.8"
+                    app:snp_maxValue="50"
+                    app:snp_minValue="0"
+                    app:snp_orientation="vertical"
+                    app:snp_stepSize="1"
+                    app:snp_value="5"
+                    android:visibility="gone"
+                    tools:ignore="MissingClass" />
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputErrorEquipo"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textSize="20dp"
+                    android:text="5"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/colorSecundario"
+                    android:textAppearance="@style/TextLabel"
+                    android:textColor="@color/colorTitulos"/>
+
+
+
+
+            </RelativeLayout>
+
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/helvetica"
+                    android:gravity="left|center_vertical"
+                    android:lines="2"
+                    android:maxLines="2"
+                    android:text="6.- Estado del Equipo"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+
+                <Switch
+                    android:id="@+id/swimgFavAltEstadoEquipo"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="100dp"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:text="" />
+
+                <ImageView
+                    android:id="@+id/imgFavAltEstadoEquipo"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="100dp"
+
+                    android:src="@drawable/estrellafavoritooff"
+                    android:visibility="gone"/>
+
+
+                <com.michaelmuenzer.android.scrollablennumberpicker.ScrollableNumberPicker
+                    android:id="@+id/pkInputEstadoEquipo"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/background_negocios"
+                    android:fontFamily="@font/helvetica"
+
+                    android:textColor="@color/colorTitulos"
+                    android:textSize="20sp"
+                    app:snp_buttonTouchScaleFactor="0.8"
+                    app:snp_maxValue="50"
+                    app:snp_minValue="0"
+                    app:snp_orientation="vertical"
+                    app:snp_stepSize="1"
+                    app:snp_value="5"
+                    android:visibility="gone"
+                    tools:ignore="MissingClass" />
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEstadoEquipo"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textSize="20dp"
+                    android:text="5"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/colorSecundario"
+                    android:textAppearance="@style/TextLabel"
+                    android:textColor="@color/colorTitulos"/>
+
+
+
+
+
+            </RelativeLayout>
+
+
+
+
+            <androidx.legacy.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="85dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/appCompatButtonCancelarAltFav_2"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:text="Cancelar"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/helvetica"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16dp"
+                    app:chipBackgroundColor="@color/backgroundButtons"
+                    app:chipMinTouchTargetSize="0dp"
+                    android:visibility="gone"
+                    />
+
+
+
+                <androidx.legacy.widget.Space
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/appCompatButtonAceptarAltFav"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:textAlignment="center"
+                    android:text="Aceptar"
+                    android:fontFamily="@font/helvetica"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16dp"
+                    app:chipBackgroundColor="@color/backgroundButtons"
+                    app:chipMinTouchTargetSize="0dp"
+                    android:visibility="gone"
+                    />
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>
+
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimario">#212121</color>
+    <color name="colorSecundario">#303030</color>
+    <color name="colorTextoBotones">#FFFFFF</color>
+    <color name="colorTitulos">#FFFFFF</color>
+    <color name="colorSubTitulos">#D7DBDD</color>
+    <color name="color_alertas">#8A0808</color>
+    <color name="backgroundButtons">#000000</color>
+</resources>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nestedScrollViewNipSc"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_licencia"
+    android:paddingBottom="20dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    tools:context="licencia.alta_nip">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardLogin"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_below="@+id/toolbarSc"
+            android:layout_margin="10dp"
+            android:layout_marginTop="50dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="5dp"
+            >
+
+            <LinearLayout
+                android:id="@+id/fakeButtonSc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/text_view_idSc"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:gravity="center|bottom"
+                    android:textSize="30dp"
+                    android:textColor="#2ECC71"
+                    android:paddingTop="10dp"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/text_view_2Sc"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:gravity="center|bottom"
+                    android:paddingTop="50dp"
+                    android:textColor="@color/colorTitulos"
+                    android:paddingBottom="20dp"
+                    android:textSize="25dp"
+                    android:text="Confirmacion de NIP" />
+
+            </LinearLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/textInputLayoutPasswordSc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorSecundario"
+                android:layout_marginTop="210dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                app:boxStrokeColor="@color/colorPrimaryDark"
+                android:textColorHint="@color/colorSecundario">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInputEditTextPasswordSc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:errorEnabled="true"
+                    android:hint="@string/hint_confirma_new_nip"
+                    android:inputType="numberPassword"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:textSize="30dp"
+                    app:boxBackgroundColor="@android:color/transparent"
+                    android:background="@android:color/transparent"
+                    android:textAppearance="@style/TextLabel"
+                    android:textColor="@color/colorTitulos" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/appCompatButtonLoginSc"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/helvetica"
+                    app:chipBackgroundColor="@color/backgroundButtons"
+                    android:text="Enviar"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorTextoBotones"
+                    android:textSize="20dp"
+                    app:chipMinTouchTargetSize="0dp"
+
+                    />
+
+                <TextView
+                    android:id="@+id/txtUltVersionConfNIP"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:paddingTop="40dp"
+                    android:text=""
+                    android:textColor="#D7DBDD"
+                    android:textSize="10dp"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.core.widget.NestedScrollView>

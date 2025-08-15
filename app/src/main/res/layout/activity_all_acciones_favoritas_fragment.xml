@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/MenuDashView"
+    android:fillViewport="true"
+    tools:context=".allaccionesfavoritas.ui.main.AllAccionesFavoritasFragment"
+    android:orientation="vertical">
+
+
+    <GridView
+        android:id="@+id/gridDashboardAllAccFav"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnWidth="150dp"
+        android:horizontalSpacing="16dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="15dp"
+
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="60dp"
+        android:scrollbars="vertical"
+
+        />
+
+
+
+
+
+
+</LinearLayout>

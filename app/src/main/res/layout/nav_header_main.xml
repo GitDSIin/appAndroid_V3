@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_header_height"
+    android:background="@drawable/side_nav_bar"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:id="@+id/imageView_logobar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/app_name"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:paddingBottom="10dp"
+        app:srcCompat="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/txtTituloApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/helvetica"
+        android:text="@string/app_name"
+        android:textColor="@color/colorTitulos"
+        android:layout_below="@+id/imageView_logobar"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorTitulos"
+        android:paddingLeft="0dp"
+        android:textAlignment="textEnd"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/helvetica"
+        android:text="@string/nav_header_subtitle"
+        tools:ignore="RtlCompat" />
+</RelativeLayout>

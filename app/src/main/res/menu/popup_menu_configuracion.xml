@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    >
+
+    <item
+        android:id="@+id/mmultVersion"
+        android:title=""
+        app:showAsAction="never"
+        android:enabled="false"
+        >
+    </item>
+    <item
+        android:id="@+id/mmVigenciaLicencia"
+        android:title=""
+        app:showAsAction="never"
+        android:enabled="false"
+        >
+    </item>
+    <item
+        android:id="@+id/mmUsuarioActual"
+        android:title=""
+        android:enabled="false"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/opcion_entorno_servidor"
+        android:title="Cambiar Servidor"
+        android:visible="false"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/opcion_avatar"
+        android:title="Seleccionar foto de perfil"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/opcion_cambio_nip"
+        android:title="Cambio de NIP"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/opcion_cinfiguracion"
+        android:title="Configuracion"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/opcion_confbackupftp"
+        android:title="Copia de Seguridad"
+        app:showAsAction="never"/>
+
+
+    <item
+        android:id="@+id/opcion_buscar_actualizacion"
+        android:title="Buscar Actualizaciones"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/opcion_auxiliar_ayuda"
+        android:icon="@drawable/ic_ayuda_24"
+        android:title="¿Necesitas ayuda?"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:id="@+id/opcion_salir"
+        android:title="Salir"
+        app:showAsAction="never"/>
+
+
+
+
+
+</menu>

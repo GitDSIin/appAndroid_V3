@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/first_fragment">
+
+    <fragment
+        android:id="@+id/first_fragment"
+        android:tag= "first_fragment"
+        android:name="com.apptomatico.app_movil_kotlin_v3.negocio.NegocioFragment"
+        android:label="Inicio"
+        tools:layout="@layout/negocio_activity" >
+        <action
+            android:id="@+id/action_firstFragment_to_secondFragment"
+            app:destination="@id/second_fragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_fiveFragment"
+            app:destination="@id/five_fragment" />
+        <action
+            android:id="@+id/action_firstFragment_to_sixFragment"
+            app:destination="@id/six_fragment" />
+
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/second_fragment"
+        android:name="com.apptomatico.app_movil_kotlin_v3.alertas.AlertasFragment"
+        android:label="Alertas"
+        tools:layout="@layout/alertas_activity" >
+        <action
+            android:id="@+id/action_secondFragment_to_thirdFragment"
+            app:destination="@id/third_fragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/five_fragment"
+        android:name="com.apptomatico.app_movil_kotlin_v3.allaccionesfavoritas.AllAccionesFavoritas"
+        android:label="Acciones"
+        tools:layout="@layout/activity_all_acciones_favoritas" />
+
+    <fragment
+        android:id="@+id/six_fragment"
+        android:name="com.apptomatico.app_movil_kotlin_v3.DashboardActivity"
+        android:label="Dashboard"
+        tools:layout="@layout/activity_dashboard" />
+
+
+</navigation>

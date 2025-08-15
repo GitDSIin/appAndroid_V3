@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/InicioLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:tag="InicioEquiposFragment"
+    android:background="@drawable/background_negocios"
+    tools:context=".negocio.NegocioFragment">
+
+
+
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshPrincipal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        tools:ignore="MissingClass,MissingConstraints">
+
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollInicio"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/rltLyCarrouselAltFav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="MissingConstraints">
+
+                    <TextView
+                        android:id="@+id/lblTituloAccionesFav"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/colorPrimario"
+                        android:fontFamily="@font/helvetica"
+                        android:gravity="fill_vertical"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/colorTitulos"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:text="Acciones Favoritas"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <ImageView
+                        android:id="@+id/btnSetAddAltFavoritas"
+                        android:layout_width="29dp"
+                        android:layout_height="29dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="50dp"
+                        android:background="@drawable/signomas"
+                        android:visibility="visible"
+                        app:layout_constraintLeft_toRightOf="@+id/lblTituloAccionesFav"
+                        tools:ignore="MissingConstraints" />
+
+                    <ImageView
+                        android:id="@+id/btnUpdActFavorita"
+                        android:layout_width="29dp"
+                        android:layout_height="29dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/actualizargraficos"
+                        app:layout_constraintLeft_toRightOf="@+id/btnSetAddAltFavoritas"
+                        tools:ignore="MissingConstraints" />
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/rltLyScrollAccFav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/rltLyCarrouselAltFav">
+
+
+                    <com.apptomatico.app_movil_kotlin_v3.negocio.HorizontalCarouselRecyclerView
+                        android:id="@+id/item_list_favoritos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:clipToPadding="false"
+                        android:overScrollMode="never"
+                        android:visibility="gone"
+                        tools:ignore="MissingConstraints" />
+
+                    <HorizontalScrollView
+                        android:id="@+id/horizontal_scrollAccFav"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/linearAccFav"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"></LinearLayout>
+
+                    </HorizontalScrollView>
+
+
+                    <ProgressBar
+                        android:id="@+id/progressIconAccfavx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:layout_centerInParent="true"
+                        android:indeterminate="true" />
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/rltLyPrincipal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/rltLyScrollAccFav">
+
+
+
+                    <TextView
+                        android:id="@+id/lblTituloMntFav"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/colorPrimario"
+                        android:fontFamily="@font/helvetica"
+                        android:gravity="fill_vertical"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/colorTitulos"
+                        android:textSize="15sp"
+                        android:text="Monitores Favoritos"
+                        android:textStyle="bold"
+
+                        tools:ignore="MissingConstraints">
+
+                    </TextView>
+
+
+                    <ImageView
+                        android:id="@+id/btnSetAddMonitoreables"
+                        android:layout_width="29dp"
+                        android:layout_height="29dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="50dp"
+                        android:background="@drawable/signomas"
+                        android:visibility="visible"
+                        app:layout_constraintLeft_toRightOf="@+id/lblTituloMntFav"
+                        tools:ignore="MissingConstraints" />
+
+                    <ImageView
+                        android:id="@+id/btnUpdFavMonitoreables"
+                        android:layout_width="29dp"
+                        android:layout_height="29dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/actualizargraficos"
+                        app:layout_constraintLeft_toRightOf="@+id/btnSetAddMonitoreables"
+                        tools:ignore="MissingConstraints" />
+
+                </RelativeLayout>
+
+                <ProgressBar
+                    android:id="@+id/progressbarmonitores"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="5dp"
+                    android:indeterminate="true"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/rltLyPrincipal"
+                    tools:ignore="MissingConstraints" />
+
+                <RelativeLayout
+                    android:id="@+id/rltLyScrollMntFav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/progressbarmonitores">
+
+
+                    <com.apptomatico.app_movil_kotlin_v3.negocio.HorizontalCarouselRecyclerView
+                        android:id="@+id/carroucel_list_monitoreables"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:clipToPadding="false"
+                        android:overScrollMode="never"
+                        android:visibility="gone"
+                        tools:ignore="MissingConstraints" />
+
+                    <HorizontalScrollView
+                        android:id="@+id/horizontal_scrollMntFav"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/linearMntFav"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"></LinearLayout>
+
+                    </HorizontalScrollView>
+
+
+                    <ImageView
+                        android:id="@+id/imgDefaultMntFav"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:visibility="gone" />
+
+
+                    <ProgressBar
+                        android:id="@+id/progressIconMntfav"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:indeterminate="true" />
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/rltLyPrincipalFav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/rltLyScrollMntFav">
+
+                    <TextView
+                        android:id="@+id/lblTituloAlertasFav"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/colorPrimario"
+                        android:fontFamily="@font/helvetica"
+                        android:gravity="fill_vertical"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/colorTitulos"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:text="Alertas Favoritas"
+                        tools:ignore="MissingConstraints" />
+
+
+                    <ImageView
+                        android:id="@+id/btnSetAlertasFavInicio"
+                        android:layout_width="29dp"
+                        android:layout_height="29dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="50dp"
+                        android:background="@drawable/signomas"
+                        app:layout_constraintLeft_toRightOf="@+id/lblTituloAlertasFav"
+                        tools:ignore="MissingConstraints" />
+
+                    <ImageView
+                        android:id="@+id/btnUpdFavAlertas"
+                        android:layout_width="29dp"
+                        android:layout_height="29dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/actualizargraficos"
+                        app:layout_constraintLeft_toRightOf="@+id/btnSetAlertasFavInicio"
+                        tools:ignore="MissingConstraints" />
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/rltLyScrollNotFav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/rltLyPrincipalFav">
+
+
+                    <com.apptomatico.app_movil_kotlin_v3.negocio.HorizontalCarouselRecyclerView
+                        android:id="@+id/carroucel_list_alertas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:clipToPadding="false"
+                        android:overScrollMode="never"
+                        android:visibility="gone"
+                        tools:ignore="MissingConstraints" />
+
+
+                    <HorizontalScrollView
+                        android:id="@+id/horizontal_scrollAltFav"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/linearAltFav"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"></LinearLayout>
+
+
+                    </HorizontalScrollView>
+
+
+                    <ImageView
+                        android:id="@+id/imgDefaultAltFav"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/estrelladefault24"
+                        android:visibility="gone" />
+
+                    <ProgressBar
+                        android:id="@+id/progressIconAltFav"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:indeterminate="true" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/rltLyPrinNeg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/rltLyScrollNotFav">
+
+                    <TextView
+                        android:id="@+id/lblTituloNegocios"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/colorPrimario"
+                        android:fontFamily="@font/helvetica"
+                        android:gravity="fill_vertical"
+                        android:paddingLeft="10dp"
+                        android:textColor="@color/colorTitulos"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:text="Equipos"
+                        tools:ignore="MissingConstraints" />
+
+                    <Spinner
+                        android:id="@+id/inicio_negocios_spinner"
+                        style="@style/Widget.AppCompat.Spinner"
+                        android:layout_width="210dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="80dp"
+                        android:background="@drawable/spinner_bg"
+                        android:dropDownWidth="300dp"
+                        android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+                        android:popupBackground="@android:color/white"
+                        android:popupElevation="3dp"
+                        android:stateListAnimator="@drawable/spinner_sla"
+                        android:visibility="gone"
+                        app:layout_constraintLeft_toRightOf="@+id/lblTituloNegocios"
+
+
+                        />
+
+                    <ImageView
+                        android:id="@+id/btnPruebaSocket"
+                        android:layout_width="29dp"
+                        android:layout_height="29dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="50dp"
+                        android:background="@drawable/signomas"
+                        android:visibility="gone"
+                        app:layout_constraintLeft_toRightOf="@+id/lblTituloAlertasFav"
+                        tools:ignore="MissingConstraints,NotSibling" />
+
+                    <ImageView
+                        android:id="@+id/btnActualizaEquipos"
+                        android:layout_width="29dp"
+                        android:layout_height="29dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/actualizargraficos"
+                        app:layout_constraintLeft_toRightOf="@+id/inicio_negocios_spinner"
+                        tools:ignore="MissingConstraints" />
+                </RelativeLayout>
+
+
+
+                <ProgressBar
+                    android:id="@+id/progressEquiposAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/rltLyPrinNeg"
+                    android:visibility="gone"
+                    tools:ignore="MissingConstraints" />
+
+                <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:id="@+id/container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
+                    android:tag="Fragmento_negocio"
+                    app:layout_constraintTop_toBottomOf="@+id/rltLyPrinNeg"
+                    tools:context=".negocio.NegocioActivity"
+
+                    />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <ProgressBar
+            android:id="@+id/progressBarGeneral"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="center"
+            />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

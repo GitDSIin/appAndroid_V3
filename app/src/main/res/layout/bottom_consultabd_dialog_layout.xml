@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_negocios">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/lblDatosCOnexion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:lines="2"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/helvetica"
+            android:layout_marginLeft="10dp"
+            android:text="Consulta:"
+            android:textColor="#000000"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="?android:attr/selectableItemBackground"
+        >
+
+
+        <TextView
+            android:id="@+id/lblError"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:lines="3"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/helvetica"
+            android:layout_marginLeft="10dp"
+            android:text="Error:"
+            android:textColor="#B63218"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
+
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/llconsulta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="8dp">
+
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textInputEditConsulta"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:scrollbars="vertical"
+            android:inputType="text"
+            android:gravity="left"
+            android:maxLines="10"
+            android:textSize="20dp"
+            android:text=""
+            android:textAppearance="@style/TextLabel"
+            android:layout_weight="1"
+            android:textColor="@color/black" />
+
+
+        <ProgressBar
+            android:id="@+id/progressAlertas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:visibility="gone"
+            />
+
+
+
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="8dp">
+
+
+
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/btnEjectDBAceptar"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Consultar"
+            android:gravity="center"
+            android:textColor="@color/colorTextoBotones"
+            android:textSize="15dp"
+            android:layout_marginLeft="10dp"
+            android:textAlignment="center"
+            app:chipBackgroundColor="@color/backgroundButtons"
+            app:chipMinTouchTargetSize="0dp"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

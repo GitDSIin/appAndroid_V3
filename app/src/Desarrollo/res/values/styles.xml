@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimario</item>
+        <item name="colorPrimaryDark">@color/colorSecundario</item>
+        <item name="colorAccent">@color/colorTitulos</item>
+        <item name="android:textColor">@color/colorSubTitulos</item>
+        <item name="android:textColorHint">@color/colorTextoBotones</item>
+        <item name="colorControlNormal">@color/colorTextoBotones</item>
+        <item name="colorControlActivated">@color/colorTextoBotones</item>
+        <item name="android:windowBackground">@drawable/splashscreen</item>
+    </style>
+</resources>

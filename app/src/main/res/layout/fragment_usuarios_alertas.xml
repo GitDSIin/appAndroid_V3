@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="8dp">
+
+        <ImageView
+            android:id="@+id/btnCancelarAlertausu"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/flechahaciaatrasv224"
+            />
+
+        <!-- Título principal -->
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Usuarios permitidos para enviar alertas a este equipo"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingBottom="16dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rltUpdateHeaderBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout
+            android:id="@+id/layoutheadertitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tituloEquipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_marginRight="5dp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/helvetica"
+                android:gravity="center"
+                android:text="Equipo:"/>
+
+
+
+            <Spinner
+                android:id="@+id/frm_equipos_spinner_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                style="@style/Widget.AppCompat.Spinner"
+                android:background="@drawable/spinner_bg"
+                android:dropDownWidth="match_parent"
+                android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+                android:popupBackground="@android:color/white"
+                android:popupElevation="3dp"
+                android:gravity="left"
+                android:stateListAnimator="@drawable/spinner_sla"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btnActivarTodos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Activar todos los usuarios"
+        android:layout_marginTop="8dp"/>
+
+
+    <!-- Encabezado de columnas -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:id="@+id/tvNombreEquipo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Equipo ▲"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@color/colorPrimario"/>
+
+        <TextView
+            android:id="@+id/tvNombreUsuario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nombre ▲"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@color/colorPrimario"/>
+
+        <TextView
+            android:id="@+id/tvAlerta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Envia Alerta ▲"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="@color/colorPrimario"/>
+    </LinearLayout>
+
+
+
+    <!-- Lista de usuarios -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerUsuarios"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+
+
+
+</LinearLayout>

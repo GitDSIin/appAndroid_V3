@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">APP_MOVIL_KOTLIN_V3</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -9,4 +9,37 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+    <string name="hint_confirma_nip" translatable="false">Ingrese su NIP</string>
+    <string name="text_login" translatable="false">Ingresar</string>
+
+    <string name="title_file_download" translatable="false">APP esta descargando</string>
+    <string name="error_message_email" translatable="false">Ingrese un nip valido</string>
+
+    <string name="storage_access_required" translatable="false">Se requiere acceso al almacenamiento para descargar el archivo.</string>
+
+    <string name="downloading" translatable="false" tools:ignore="DuplicateDefinition">Se inicia la descarga...</string>
+
+    <string name="nav_header_subtitle" translatable="false">contacto@apptomatico.com</string>
+
+    <string name="menu_home" translatable="false">Dashboard</string>
+    <string name="menu_Negocios" translatable="false">Negocios</string>
+    <string name="menu_Descargas" translatable="false">Descargas</string>
+    <string name="menu_Alertas_Eliminadas" translatable="false">Alertas Eliminadas</string>
+    <string name="menu_Historico_Screenshot" translatable="false">Historico Screenshot</string>
+    <string name="menu_Usuario_Alertas" translatable="false">Permisos Usuarios Alertas</string>
+
+    <string name="hint_licencia" translatable="false">Ingrese licencia</string>
+    <string name="hint_val_licencia" translatable="false">Validar</string>
+
+    <style name="ThemeOverlay.App.TextInputLayout" parent="">
+        <item name="colorPrimary">@color/colorPrimario</item>
+    </style>
+
+    <string name="preference_file_key" translatable="false">bpk_preferences</string>
+
+
+
+    <string name="hint_nip" translatable="false">Ingrese su NIP</string>
+    <string name="hint_confirma_new_nip" translatable="false">Confirme su NIP</string>
 </resources>

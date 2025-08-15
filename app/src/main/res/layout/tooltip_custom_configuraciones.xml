@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_tooltip"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/wz_titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTitulos"
+            android:fontFamily="@font/helvetica"
+            android:textSize="17sp"
+            android:layout_marginRight="20dp"
+            android:text=""/>
+
+        <ImageView
+            android:id="@+id/btn_close"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ic_baseline_close_24"
+            android:gravity="right"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+
+
+
+    <TextView
+        android:id="@+id/tv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center_vertical"
+        android:fontFamily="@font/helvetica"
+        android:textSize="15sp"
+        android:lines="3"
+        android:lineSpacingExtra="5dp"
+        android:text="Titulo"
+        android:textColor="@color/colorTitulos"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+        tools:ignore="RtlHardcoded" />
+
+
+    <TextView
+        android:id="@+id/ed_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/helvetica"
+        android:textSize="15sp"
+        android:lines="2"
+        android:lineSpacingExtra="5dp"
+        android:textColor="@color/colorTitulos"
+        android:text="Detalle " />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:visibility="gone"
+            android:text="Atras" />
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

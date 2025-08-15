@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_dashboard_white_24dp"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/NegociosFragment"
+            android:icon="@drawable/ic_store_white_24dp"
+            android:title="@string/menu_Negocios" />
+
+        <item
+            android:id="@+id/DescargasFragment"
+            android:icon="@drawable/ic_download_24"
+            android:title="@string/menu_Descargas" />
+
+        <item
+            android:id="@+id/AlertasEliminadasMenu"
+            android:icon="@drawable/ic_delete_24"
+            android:title="@string/menu_Alertas_Eliminadas" />
+        <item
+            android:id="@+id/HistoricoScreenshotMenu"
+            android:icon="@drawable/ic_historico_24"
+            android:title="@string/menu_Historico_Screenshot" />
+
+        <item
+            android:id="@+id/UsuariosAlertas"
+            android:icon="@drawable/ic_historico_24"
+            android:title="@string/menu_Usuario_Alertas" />
+
+
+        <item
+            android:id="@+id/TerminosyCondiciones"
+            android:icon="@drawable/ic_terminos_24"
+            android:title="Términos y Condiciones"/>
+
+        <item
+            android:id="@+id/PoliticaPrivacidad"
+            android:icon="@drawable/ic_privacidad_24"
+            android:title="Políticas de privacidad"/>
+
+
+        <item
+            android:id="@+id/CentrodeAyuda"
+            android:icon="@drawable/ic_ayuda_24"
+            android:title="Centro de Ayuda"/>
+
+
+
+    </group>
+</menu>
