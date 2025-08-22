@@ -60,6 +60,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.apptomatico.app_movil_kotlin_v3.ConsultaDinamica.ConsultaDinamicaActivity
+import com.apptomatico.app_movil_kotlin_v3.R
 import com.apptomatico.app_movil_kotlin_v3.Runnables.ConsultaEstatusEquiposActThread
 import com.apptomatico.app_movil_kotlin_v3.Runnables.ConsultaInfoEquiposThread
 import com.apptomatico.app_movil_kotlin_v3.Runnables.ConsultaInternetAntenaThread
@@ -110,6 +111,8 @@ import com.tinder.scarlet.streamadapter.rxjava2.RxJava2StreamAdapterFactory
 import com.tinder.scarlet.websocket.okhttp.newWebSocketFactory
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import net.sqlcipher.database.SQLiteDatabase
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -136,6 +139,8 @@ import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import kotlin.text.count
 import kotlin.text.substring
+
+
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener, NavigationView.OnNavigationItemSelectedListener  {
 
@@ -615,62 +620,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener, Na
 //    }
 
 
-    private fun startTimerValEquipoActivo(intervalo: Long) {
-        timerEstatusEquipos.schedule(object : TimerTask() {
-            override fun run() {
-
-                try {
-                    val Equipos = databaseHelper_Data.getControlEquipos()
-                    var dominio_actual = ""
-                    var entornoAct = databaseHelper_Data.getControlEntornoConexion(this@MainActivity)
-                    if(entornoAct == 1){
-                        dominio_actual = "https://${BuildConfig.DOMINIO_PORTAL}"
-                    }else{
-                        dominio_actual = "https://${BuildConfig.DOMINIO_PORTAL}"
-                    }
-
-                    if (Equipos.isNotEmpty()){
-                        var idDispositivo: String = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID).toString()
-                        idDispositivo = removeLeadingZeroes(idDispositivo)
-                        idDispositivo =  removeTrailingZeroes(idDispositivo)
-
-                        var ctxNavFragment: Fragment? = supportFragmentManager?.findFragmentByTag("main_fragment") as? NavHostFragment
-                        var ctxFragment: Fragment? =  ctxNavFragment?.childFragmentManager?.fragments?.first()
-                        ctxFragment?.view?.tag
-
-                        var worked = ConsultaEstatusEquiposActThread(
-                            databaseHelper_Data,
-                            this@MainActivity,
-                            framrNegocioList!!,
-                            Equipos,
-                            dominio_actual,
-                            1,
-                            LoginActivity.webSocketService,
-                            idDispositivo,
-                            ctxFragment?.view?.tag.toString(),
-                            imyConnectivityManager
-                        )
-                        executorServiceEstatusEquipos.execute(worked)
-                    }
-
-                } catch (ex: Exception) {
-                    // executorServiceAntena.shutdown()
-                }
-
-            }
-        }, 0, intervalo)
-
-
-    }
-
-
-//    private fun startTimerValEquipoUnicActivo(intervalo: Long) {
-//        timerEstatusEquiposUnic.scheduleAtFixedRate(object : TimerTask() {
+//    private fun startTimerValEquipoActivo(intervalo: Long) {
+//        timerEstatusEquipos.schedule(object : TimerTask() {
 //            override fun run() {
 //
 //                try {
 //                    val Equipos = databaseHelper_Data.getControlEquipos()
-//
 //                    var dominio_actual = ""
 //                    var entornoAct = databaseHelper_Data.getControlEntornoConexion(this@MainActivity)
 //                    if(entornoAct == 1){
@@ -679,20 +634,32 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener, Na
 //                        dominio_actual = "https://${BuildConfig.DOMINIO_PORTAL}"
 //                    }
 //
-//                    var ctxNavFragment: Fragment? = supportFragmentManager?.findFragmentByTag("main_fragment") as? NavHostFragment
-//                    var ctxFragment: Fragment? =  ctxNavFragment?.childFragmentManager?.fragments?.first()
-//                    ctxFragment?.view?.tag
-//
 //                    if (Equipos.isNotEmpty()){
 //                        var idDispositivo: String = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID).toString()
 //                        idDispositivo = removeLeadingZeroes(idDispositivo)
 //                        idDispositivo =  removeTrailingZeroes(idDispositivo)
-//                        var worked = ConsultaEstatusEquiposUnicActThread(databaseHelper_Data,this@MainActivity,framrNegocioUnicamenteList!!,   Equipos ,dominio_actual, 1, LoginActivity.webSocketService, idDispositivo, imyConnectivityManager, ctxFragment?.view?.tag.toString())
+//
+//                        var ctxNavFragment: Fragment? = supportFragmentManager?.findFragmentByTag("main_fragment") as? NavHostFragment
+//                        var ctxFragment: Fragment? =  ctxNavFragment?.childFragmentManager?.fragments?.first()
+//                        ctxFragment?.view?.tag
+//
+//                        var worked = ConsultaEstatusEquiposActThread(
+//                            databaseHelper_Data,
+//                            this@MainActivity,
+//                            framrNegocioList!!,
+//                            Equipos,
+//                            dominio_actual,
+//                            1,
+//                            LoginActivity.webSocketService,
+//                            idDispositivo,
+//                            ctxFragment?.view?.tag.toString(),
+//                            imyConnectivityManager
+//                        )
 //                        executorServiceEstatusEquipos.execute(worked)
 //                    }
 //
 //                } catch (ex: Exception) {
-//
+//                    // executorServiceAntena.shutdown()
 //                }
 //
 //            }
@@ -700,6 +667,62 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener, Na
 //
 //
 //    }
+
+
+
+    private fun startTimerValEquipoActivo(intervalo: Long) {
+        timerEstatusEquipos.schedule(object : TimerTask() {
+            @RequiresApi(Build.VERSION_CODES.N)
+            @SuppressLint("HardwareIds")
+            override fun run() {
+                val Equipos = databaseHelper_Data.getControlEquipos()
+                if (Equipos.isEmpty()) return
+
+                // Llamada a corutina desde el hilo principal de Android
+                lifecycleScope.launch(Dispatchers.IO) {
+                    try {
+                        var dominio_actual = ""
+                        val entornoAct = databaseHelper_Data.getControlEntornoConexion(this@MainActivity)
+                        dominio_actual = "https://${BuildConfig.DOMINIO_PORTAL}"
+
+                        var idDispositivo: String = Settings.Secure.getString(
+                            contentResolver,
+                            Settings.Secure.ANDROID_ID
+                        )
+
+                           idDispositivo = removeLeadingZeroes(idDispositivo)
+                           idDispositivo =  removeTrailingZeroes(idDispositivo)
+
+                        val ctxNavFragment: Fragment? =
+                            supportFragmentManager.findFragmentByTag("main_fragment") as? NavHostFragment
+                        val ctxFragment: Fragment? = ctxNavFragment?.childFragmentManager?.fragments?.first()
+                        val fragmentTag = ctxFragment?.view?.tag.toString()
+
+                        val worked = ConsultaEstatusEquiposActThread(
+                            databaseHelper_Data,
+                            this@MainActivity,
+                            framrNegocioList!!,
+                            Equipos,
+                            dominio_actual,
+                            1,
+                            LoginActivity.webSocketService,
+                            idDispositivo,
+                            fragmentTag,
+                            imyConnectivityManager
+                        )
+
+                        // Ejecutar la función suspend run()
+                        worked.run() // <- aquí se llama directamente a la suspend function
+
+                    } catch (ex: Exception) {
+                        Log.e("TIMER_EQUIPO", "Error en Timer: ${ex.message}")
+                    }
+                }
+            }
+        }, 0, intervalo)
+    }
+
+
 
 
 

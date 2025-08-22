@@ -39,7 +39,7 @@
             android:textAlignment="center"
             android:textSize="11sp"
             android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textColor="@color/colorTitulos"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

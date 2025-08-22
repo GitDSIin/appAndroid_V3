@@ -166,6 +166,10 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.9.2" // para by viewModels() en Activity
 
 
+    //implementation 'com.squareup.okhttp3:okhttp:5.1.0' // o la versión más reciente
+    // También necesitas Gson para el parsing JSON
+    //implementation 'com.google.code.gson:gson:2.13.1'
+
 
 }
 

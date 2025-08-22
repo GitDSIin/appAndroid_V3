@@ -10,6 +10,7 @@ import android.content.SharedPreferences
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.os.Build
+import java.util.Locale
 
 class AutoStartHelper private constructor() {
     /***
@@ -72,7 +73,7 @@ class AutoStartHelper private constructor() {
     fun getAutoStartPermission(context: Context) {
         sharedpreferences = context.getSharedPreferences(context.getString(R.string.preference_file_key), MODE_PRIVATE)
         editor = context.getSharedPreferences(context.getString(R.string.preference_file_key), MODE_PRIVATE).edit()
-        val build_info = Build.BRAND.toLowerCase()
+        val build_info = Build.BRAND.toLowerCase(Locale.ROOT)
         when (build_info) {
             BRAND_ASUS -> autoStartAsus(context)
             BRAND_XIAOMI_REDMI -> autoStartXiaomi(context)

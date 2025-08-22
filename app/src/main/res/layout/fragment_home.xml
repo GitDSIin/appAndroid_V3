@@ -56,7 +56,7 @@
                     android:textSize="15sp"
                     android:textStyle="bold"
                     android:fontFamily="@font/helvetica"
-                    android:textColor="@color/colorBackground"
+                    android:textColor="@color/colorTitulos"
                     android:text=""
                     tools:ignore="MissingConstraints"
                     />

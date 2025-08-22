@@ -82,6 +82,7 @@ import okhttp3.Request
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.ArrayList
 import java.util.Calendar
@@ -192,210 +193,196 @@ class NegocioFragment: Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        rootView = inflater.inflate(R.layout.negocio_activity, container, false)
 
-        try{
+        // Inicializar componentes
+        initViews(rootView)
 
-            // Inflate the layout for this fragment
-            rootView =  inflater.inflate(R.layout.negocio_activity, container, false)
-            Thread.setDefaultUncaughtExceptionHandler(UnexpectedCrashSaver(requireContext()))
-            databaseHelper_Data = DatabaseHelper.getInstance(requireContext())
-            swipeRefreshLayoutP = rootView.findViewById(R.id.swipeRefreshPrincipal)
-            iprogressBarGeneralInicio = rootView.findViewById(R.id.progressBarGeneral)
-            progressIconAltFav = rootView.findViewById(R.id.progressIconAltFav)
-            progress_icon_mnt_fav = rootView.findViewById(R.id.progressIconMntfav)
-            progress_icon_acc_fav = rootView.findViewById(R.id.progressIconAccfavx)
-            progressEquiposAll = rootView.findViewById<ProgressBar>(R.id.progressEquiposAll)
-            linearLayoutAccFav = rootView.findViewById<View>(R.id.linearAccFav) as LinearLayout
-            linearLayoutAltFav = rootView.findViewById<View>(R.id.linearAltFav) as LinearLayout
-            linearLayoutMntFav = rootView.findViewById<View>(R.id.linearMntFav) as LinearLayout
-            donutGaugeUpdateMonitores = rootView.findViewById<View>(R.id.progressbarmonitores) as ProgressBar
-            ibtnReloadFavMonitor = rootView.findViewById(R.id.btnUpdFavMonitoreables)
-            btnUpdActFavorita = rootView.findViewById(R.id.btnUpdActFavorita)
-            mgDefaultMntFav = rootView.findViewById<View>(R.id.imgDefaultMntFav) as ImageView
+        val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomBar)
+        navBar.visibility = View.VISIBLE
 
-            framrNegocioList = rootView.findViewById(R.id.container)
+        // Configurar listeners
+        setupListeners()
 
-            var btnAddMonitoreablesFav: ImageView = rootView.findViewById(R.id.btnSetAddMonitoreables)
-            var btnActualizaEquipos: ImageView = rootView.findViewById(R.id.btnActualizaEquipos)
-            var btnReloadFavAlertas: ImageView = rootView.findViewById(R.id.btnUpdFavAlertas)
-            var btnAlertasFavoritas: ImageView = rootView.findViewById(R.id.btnSetAlertasFavInicio)
-            var btnSetAddAltFavoritas: ImageView = rootView.findViewById(R.id.btnSetAddAltFavoritas)
+        // WebSocket + cliente HTTP
+        setupWebSocketService()
+        clientsw = OkHttpClient.Builder()
+            .connectTimeout(5, TimeUnit.SECONDS)
+            .writeTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(5, TimeUnit.SECONDS)
+            .build()
+
+        // Construcción de request simplificada
+        buildRequest()
+
+        return rootView
+    }
+
+    private fun initViews(view: View) {
+        databaseHelper_Data = DatabaseHelper.getInstance(requireContext())
+        swipeRefreshLayoutP = view.findViewById(R.id.swipeRefreshPrincipal)
+        iprogressBarGeneralInicio = view.findViewById(R.id.progressBarGeneral)
+        progressIconAltFav = view.findViewById(R.id.progressIconAltFav)
+        progress_icon_mnt_fav = view.findViewById(R.id.progressIconMntfav)
+        progress_icon_acc_fav = view.findViewById(R.id.progressIconAccfavx)
+        progressEquiposAll = view.findViewById(R.id.progressEquiposAll)
+        linearLayoutAccFav = view.findViewById(R.id.linearAccFav)
+        linearLayoutAltFav = view.findViewById(R.id.linearAltFav)
+        linearLayoutMntFav = view.findViewById(R.id.linearMntFav)
+        donutGaugeUpdateMonitores = view.findViewById(R.id.progressbarmonitores)
+        ibtnReloadFavMonitor = view.findViewById(R.id.btnUpdFavMonitoreables)
+        btnUpdActFavorita = view.findViewById(R.id.btnUpdActFavorita)
+        mgDefaultMntFav = view.findViewById(R.id.imgDefaultMntFav)
+        framrNegocioList = view.findViewById(R.id.container)
+    }
+
+    @SuppressLint("HardwareIds")
+    private fun buildRequest() {
+        // Construcción del Request (ya simplificado, sin el if repetido)
+        val dominioActual = "https://${BuildConfig.DOMINIO_PORTAL}"
+        var idDispositivo = Settings.Secure.getString(
+            requireContext().contentResolver,
+            Settings.Secure.ANDROID_ID
+        ).toString()
+        idDispositivo = removeLeadingZeroes(idDispositivo)
+        idDispositivo = removeTrailingZeroes(idDispositivo)
+
+        requestsw = Request.Builder()
+            .url("$dominioActual/api/get_acciones_tipo_monitoreables_list/?id_hardware=Todos&id_hardware_movil=$idDispositivo&id_cat_negocio=0")
+            .header("Authorization", "JWT ${BuildConfig.TOKEN_MAESTRO}")
+            .header("Content-Type", "application/json")
+            .build()
 
 
-            val screenWidth = DisplayMetrics()
-            activity?.windowManager?.defaultDisplay?.getMetrics(screenWidth)
-
-            val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomBar)
+        iprogressBarGeneralInicio?.visibility = View.VISIBLE
 
 
-
-            with(rootView) {
-                navBar.visibility = View.VISIBLE
-                btnSetAddAltFavoritas.setOnClickListener {
-                    btnSetAddAltFavoritas.animationXFade(Zoom.ZOOM_IN)
-
-
-                    //findNavController().navigate(R.id.five_fragment)
-
+        clientsw.newCall(requestsw).enqueue(object : okhttp3.Callback {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+                requireActivity().runOnUiThread {
+                    iprogressBarGeneralInicio?.visibility = View.GONE
+                    Toast.makeText(requireContext(), "Error de conexión", Toast.LENGTH_SHORT).show()
                 }
-
-                btnAddMonitoreablesFav.setOnClickListener {
-                    btnAddMonitoreablesFav.animationXFade(Zoom.ZOOM_IN)
-
-
-                    (requireActivity() as MainActivity).setSelectedItem(2)
-
-                }
-
-                btnUpdActFavorita!!.setOnClickListener {
-                    btnUpdActFavorita!!.animationXFade(Rotate.ROTATE_IN)
-                    possibleItems = ArrayList()
-                    linearLayoutAccFav?.removeAllViews()
-                    UpdateAccionesFav(requireContext(), rootView,linearLayoutAccFav!!,databaseHelper_Data, progress_icon_acc_fav!!, possibleItems, arrUsuariosPermitidos).execute()
-
-                }
-
-                ibtnReloadFavMonitor!!.setOnClickListener {
-                    ibtnReloadFavMonitor!!.animationXFade(Rotate.ROTATE_IN)
-                    accionListMonitoreables.clear()
-                    carrouselMonitorItems.clear()
-                    linearLayoutMntFav?.removeAllViews()
-                    UpdateMonitoreablesFav(requireContext(), rootView,databaseHelper_Data,  progress_icon_mnt_fav, mgDefaultMntFav,linearLayoutMntFav, this@NegocioFragment).execute()
-
-                }
-
-                btnActualizaEquipos.setOnClickListener {
-                    btnActualizaEquipos.animationXFade(Rotate.ROTATE_IN)
-                    if (!checkForInternet(requireContext())) {
-                        var desc = "Conéctese a Internet, revise la configuracion de su red"
-                        var dialogBuilder = AlertDialog.Builder(requireContext())
-                        dialogBuilder.setMessage(desc)
-                            .setCancelable(false)
-                            .setNegativeButton("Aceptar", DialogInterface.OnClickListener { view, _ ->
-
-                                view.dismiss()
-                            })
-                        var alert = dialogBuilder.create()
-                        alert.setTitle("")
-                        alert.show()
-                        return@setOnClickListener
-                    }
-                    progressEquiposAll!!.visibility = View.VISIBLE
-                    NegociosHomeAdapter?.refreshFamiliasDB()
-                    NegociosHomeAdapter?.notifyDataSetChanged()
-                    Handler().postDelayed({
-                        progressEquiposAll!!.visibility = View.GONE
-                    }, 5000)
-
-                }
-
-                btnAlertasFavoritas.setOnClickListener {
-                    btnAlertasFavoritas.animationXFade(Zoom.ZOOM_IN)
-                    showModalConfiguracionAlertas()
-                }
-
-                btnReloadFavAlertas.setOnClickListener {
-                    btnReloadFavAlertas.animationXFade(Rotate.ROTATE_IN)
-                    dataListaAlertas = ArrayList()
-                    linearLayoutAltFav?.removeAllViews()
-                    UpdateAlertasFav(requireContext(), rootView,linearLayoutAltFav, databaseHelper_Data, progressIconAltFav).execute()
-
-                }
-
-                swipeRefreshLayoutP?.setOnRefreshListener {
-                    possibleItems = ArrayList()
-                    linearLayoutAccFav?.removeAllViews()
-                    dataListaAlertas = ArrayList()
-                    linearLayoutAltFav?.removeAllViews()
-                    UpdateAccionesFav(requireContext(), rootView,linearLayoutAccFav!!,databaseHelper_Data, progress_icon_acc_fav!!, possibleItems, arrUsuariosPermitidos).execute()
-
-
-                    dataListaAlertas = ArrayList()
-                    linearLayoutAltFav?.removeAllViews()
-                    UpdateAlertasFav(requireContext(), rootView,linearLayoutAltFav, databaseHelper_Data, progressIconAltFav).execute()
-
-
-
-                    //**MONITORES**
-                    accionListMonitoreables.clear()
-                    carrouselMonitorItems.clear()
-                    linearLayoutMntFav?.removeAllViews()
-                    progress_icon_mnt_fav?.visibility = View.VISIBLE
-                    UpdateMonitoreablesFav(requireContext(), rootView,databaseHelper_Data,  progress_icon_mnt_fav, mgDefaultMntFav,linearLayoutMntFav, this@NegocioFragment).execute()
-
-                    swipeRefreshLayoutP?.isRefreshing = false
-                }
-
-                Handler().postDelayed({
-                    iprogressBarGeneralInicio!!.visibility = View.GONE
-                }, 5000)
-
-                rootView?.viewTreeObserver?.addOnWindowFocusChangeListener { hasFocus ->
-                    if (hasFocus) {
-
-
-                    } else {
-
-
-
-
-                    }
-                }
-
-
-
-
-                setupWebSocketService()
-                //actualizaInicio()
-
-
-
-                clientsw = OkHttpClient.Builder()
-                    .connectTimeout(5, TimeUnit.SECONDS)
-                    .writeTimeout(5, TimeUnit.SECONDS)
-                    .readTimeout(5, TimeUnit.SECONDS)
-                    .build()
-
-
-                var entornoAct = databaseHelper_Data.getControlEntornoConexion(requireActivity())
-
-                if(entornoAct == 1){
-                    var dominio_actual = "https://${BuildConfig.DOMINIO_PORTAL}"
-                    var idDispositivo: String = Settings.Secure.getString(requireContext().contentResolver, Settings.Secure.ANDROID_ID).toString()
-                    idDispositivo = removeLeadingZeroes(idDispositivo)
-                    idDispositivo =  removeTrailingZeroes(idDispositivo)
-                    requestsw = Request.Builder()
-                        .url("${dominio_actual}/api/get_acciones_tipo_monitoreables_list/?id_hardware=Todos&id_hardware_movil=$idDispositivo&id_cat_negocio=0")
-                        .header("Authorization", "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Implc2NhbWlsbGFAZHNpaW4uY29tIiwiZXhwIjoxNjc5MDg4Mjc2LCJlbWFpbCI6Implc2NhbWlsbGFAZHNpaW4uY29tIiwib3JpZ19pYXQiOjE2NzkwODEwNzZ9.s-hvTxqpjfRIRkydS9NASkTecKNCgMzhYvHbNep-GD0")
-                        .header("Content-Type", "application/json")
-                        .build()
-                }else{
-                    var dominio_actual = "https://${BuildConfig.DOMINIO_PORTAL}"
-                    var idDispositivo: String = Settings.Secure.getString(requireContext().contentResolver, Settings.Secure.ANDROID_ID).toString()
-                    idDispositivo = removeLeadingZeroes(idDispositivo)
-                    idDispositivo =  removeTrailingZeroes(idDispositivo)
-                    requestsw = Request.Builder()
-                        .url("${dominio_actual}/api/get_acciones_tipo_monitoreables_list/?id_hardware=Todos&id_hardware_movil=$idDispositivo&id_cat_negocio=0")
-                        .header("Authorization", "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6Implc2NhbWlsbGFAZHNpaW4uY29tIiwiZXhwIjoxNjc5MDg4Mjc2LCJlbWFpbCI6Implc2NhbWlsbGFAZHNpaW4uY29tIiwib3JpZ19pYXQiOjE2NzkwODEwNzZ9.s-hvTxqpjfRIRkydS9NASkTecKNCgMzhYvHbNep-GD0")
-                        .header("Content-Type", "application/json")
-                        .build()
-                }
-
-
-
-
-
-
-
-
             }
-            return rootView
 
-        }catch (e: java.lang.Exception) {
-            Log.e("ERRORFRAGMENT", "onCreateView", e)
-            throw e
+            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+                val body = response.body?.string()
+
+                requireActivity().runOnUiThread {
+                    iprogressBarGeneralInicio?.visibility = View.GONE
+
+                    if (response.isSuccessful) {
+
+                        Log.d("NegocioFragment", "Respuesta OK: $body")
+                    } else {
+                        Toast.makeText(requireContext(), "Error ${response.code}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
+
+
+    private fun setupListeners() {
+        // Botón: agregar Monitoreables favoritos
+        rootView.findViewById<ImageView>(R.id.btnSetAddMonitoreables)?.setOnClickListener {
+            it.animationXFade(Zoom.ZOOM_IN)
+            (requireActivity() as MainActivity).setSelectedItem(2)
+        }
+
+        // Botón: actualizar Acciones favoritas
+        btnUpdActFavorita?.setOnClickListener {
+            it.animationXFade(Rotate.ROTATE_IN)
+            possibleItems = ArrayList()
+            linearLayoutAccFav?.removeAllViews()
+            UpdateAccionesFav(
+                requireContext(), rootView, linearLayoutAccFav!!,
+                databaseHelper_Data, progress_icon_acc_fav!!,
+                possibleItems, arrUsuariosPermitidos
+            ).execute()
+        }
+
+        // Botón: recargar Monitoreables
+        ibtnReloadFavMonitor?.setOnClickListener {
+            it.animationXFade(Rotate.ROTATE_IN)
+            accionListMonitoreables.clear()
+            carrouselMonitorItems.clear()
+            linearLayoutMntFav?.removeAllViews()
+            UpdateMonitoreablesFav(
+                requireContext(), rootView, databaseHelper_Data,
+                progress_icon_mnt_fav, mgDefaultMntFav,
+                linearLayoutMntFav, this@NegocioFragment
+            ).execute()
+        }
+
+        // Botón: actualizar equipos
+        rootView.findViewById<ImageView>(R.id.btnActualizaEquipos)?.setOnClickListener {
+            it.animationXFade(Rotate.ROTATE_IN)
+            if (!checkForInternet(requireContext())) {
+                AlertDialog.Builder(requireContext())
+                    .setMessage("Conéctese a Internet, revise la configuración de su red")
+                    .setCancelable(false)
+                    .setNegativeButton("Aceptar") { dialog, _ -> dialog.dismiss() }
+                    .create()
+                    .apply { setTitle("") }
+                    .show()
+                return@setOnClickListener
+            }
+            progressEquiposAll?.visibility = View.VISIBLE
+            NegociosHomeAdapter?.refreshFamiliasDB()
+            NegociosHomeAdapter?.notifyDataSetChanged()
+            Handler().postDelayed({
+                progressEquiposAll?.visibility = View.GONE
+            }, 5000)
+        }
+
+        // Botón: mostrar configuración de Alertas
+        rootView.findViewById<ImageView>(R.id.btnSetAlertasFavInicio)?.setOnClickListener {
+            it.animationXFade(Zoom.ZOOM_IN)
+            showModalConfiguracionAlertas()
+        }
+
+        // Botón: recargar Alertas
+        rootView.findViewById<ImageView>(R.id.btnUpdFavAlertas)?.setOnClickListener {
+            it.animationXFade(Rotate.ROTATE_IN)
+            dataListaAlertas = ArrayList()
+            linearLayoutAltFav?.removeAllViews()
+            UpdateAlertasFav(requireContext(), rootView, linearLayoutAltFav, databaseHelper_Data, progressIconAltFav).execute()
+        }
+
+        // Swipe refresh
+       swipeRefreshLayoutP?.setOnRefreshListener {
+           reloadAllData()
+           swipeRefreshLayoutP?.isRefreshing = false
         }
     }
+
+    private fun reloadAllData() {
+        possibleItems = ArrayList()
+        linearLayoutAccFav?.removeAllViews()
+        dataListaAlertas = ArrayList()
+        linearLayoutAltFav?.removeAllViews()
+
+        UpdateAccionesFav(requireContext(), rootView, linearLayoutAccFav!!,
+            databaseHelper_Data, progress_icon_acc_fav!!,
+            possibleItems, arrUsuariosPermitidos).execute()
+
+        UpdateAlertasFav(requireContext(), rootView, linearLayoutAltFav,
+            databaseHelper_Data, progressIconAltFav).execute()
+
+        accionListMonitoreables.clear()
+        carrouselMonitorItems.clear()
+        linearLayoutMntFav?.removeAllViews()
+        progress_icon_mnt_fav?.visibility = View.VISIBLE
+        UpdateMonitoreablesFav(requireContext(), rootView,
+            databaseHelper_Data, progress_icon_mnt_fav,
+            mgDefaultMntFav, linearLayoutMntFav,
+            this@NegocioFragment).execute()
+
+        swipeRefreshLayoutP?.isRefreshing = false
+    }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val childFragment: Fragment = ChildFragment()
